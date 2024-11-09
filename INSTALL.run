@@ -1,0 +1,16 @@
+#!/bin/bash
+
+echo "" > INSTALL.log
+echo "" > UNINSTALL.run
+
+SUDO="sudo"
+
+for i in `find . -name "*.sh"`
+do
+    echo "${i}"
+    $SUDO cp -f ${i} /usr/local/bin/
+    $SUDO chmod +x /usr/local/bin/${i}
+    echo "/usr/local/bin/${i}" >> INSTALL.log
+    echo "rm -f /usr/local/bin/${i}" >> UNINSTALL.run
+    chmod +x UNINSTALL.run
+done

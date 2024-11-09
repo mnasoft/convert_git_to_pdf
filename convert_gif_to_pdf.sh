@@ -64,7 +64,7 @@ process_directory() {
 }
 
 # Обход подкаталогов
-find "$BASE_DIR" -type d | while read -r subdir
+find "$BASE_DIR" -type d | sort -V | while read -r subdir
 do
   process_directory "$subdir"
 done
