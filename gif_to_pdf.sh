@@ -36,11 +36,13 @@ create_pdf () {
     local cdir=`pwd`
     local dir=$1
     cd ${dir}
+    # Замер времени выполнения функции
+    start_time=$(date +%s)
 
     # Подсчет количества файлов с расширением .gif
     count=$(find . -type f -name "*.gif" | wc -l)
     
-    echo "Количество файлов с расширением .gif в каталоге ${dir}: ${count}"
+    echo -n "Количество файлов с расширением .gif в каталоге ${dir}: ${count} : "
 
     for i in `find . -name "*.gif" | sort -V`
     do
@@ -49,6 +51,10 @@ create_pdf () {
     qpdf --empty --pages *.gif.pdf -- gost.pdf
     rm *.gif.pdf
     cd ${cdir}
+    
+    end_time=$(date +%s)
+    execution_time=$((end_time - start_time))
+    echo  "выполнено за: $execution_time секунд."
 }
 
 # Функция для обработки подкаталогов
