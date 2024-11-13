@@ -38,7 +38,7 @@ create_pdf () {
     cd ${dir}
 
     # Подсчет количества файлов с расширением .gif
-    count=$(find "$dir" -type f -name "*.gif" | wc -l)
+    count=$(find . -type f -name "*.gif" | wc -l)
     
     echo "Количество файлов с расширением .gif в каталоге ${dir}: ${count}"
 
